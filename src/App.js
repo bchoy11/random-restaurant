@@ -9,7 +9,7 @@ import {nanoid} from 'nanoid';
 function App(props) {
 
 //hooks
-    const [tasks, setTasks]=useState(props.tasks); //sets the state of new state "tasks" to props being passed into function from parent (tasks from index.js)
+    const [restaurants, setRestaurants]=useState(props.tasks); //sets the state of new state "restaurants" to props being passed into function from parent (tasks from index.js)
     const [filter, setFilter]=useState('All');
     const [categories, setCat]=useState(props.groups); // sets state of food categories
     const [filterMap]=useState(props.filterMap);
@@ -21,7 +21,7 @@ function App(props) {
     const criteria = filter==='All'?()=>true:listitem => listitem.category.some(group=>
       group.name.includes([filter]));
 
-    const taskList=tasks
+    const taskList=restaurants
     .filter(criteria)
     .map(task=>{
       return <Option
@@ -57,7 +57,8 @@ function App(props) {
       //variable that contains the list of filter button components
 
     function generateRandom(){
-      setRand(tasks[Math.floor(Math.random()*tasks.length)].name);
+      const filteredRestaurants=restaurants.filter(criteria);
+      setRand(filteredRestaurants[Math.floor(Math.random()*filteredRestaurants.length)].name);
     }
 
 //app functions
@@ -71,32 +72,32 @@ function App(props) {
     //function addTask used as callback prop
     function addTask(name){
       const newTask = {id:'restaurant-'+nanoid(), name: name, completed: false, category:[]};
-      setTasks([...tasks,newTask]);
+      setRestaurants([...restaurants,newTask]);
     }
     
 
     function deleteTask(id){
-      const updatedTasks=tasks.filter(task=>
+      const updatedTasks=restaurants.filter(task=>
         task.id!==id
       );
-      setTasks(updatedTasks);
+      setRestaurants(updatedTasks);
     }
 
     function editTask(id, newName){
-      const editedTask=tasks.map(task=>{
+      const editedTask=restaurants.map(task=>{
         if(id===task.id){
           return {...task, name: newName}
         }
         return task;
       });
-      setTasks(editedTask);
+      setRestaurants(editedTask);
     }
 
     //checks restaurant for selected category, if category exists in list then remove, if not then add into category list
     //updates tasks with selected or removed categories
     function checkbox(groupid, group, taskid){
       const addGroup={id: groupid, name: group};
-      const categorize = tasks.map(task=>{
+      const categorize = restaurants.map(task=>{
         if(taskid===task.id){
           let labeled=false;
           task.category.map(cat=>{
@@ -113,17 +114,17 @@ function App(props) {
         }  
           return task;  
       });
-      setTasks(categorize);
+      setRestaurants(categorize);
     }
 
     function toggleTaskCompleted(id){
-      const updatedTasks=tasks.map(task=>{
+      const updatedTasks=restaurants.map(task=>{
         if(id===task.id){
           return {...task,completed: !task.completed}
         }
         return task;
       });
-      setTasks(updatedTasks);
+      setRestaurants(updatedTasks);
     }
 
 //App format structure (format & building block component combination)
