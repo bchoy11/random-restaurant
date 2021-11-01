@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 //variable of dataset containing tasklist passed through to child
+
+//category array within Data will contain category objects that have their own id & names
+
 const Data=[
     {id: 'restaurant-1', 
     name:'Tofu', 
-    completed: false, 
     category:[],
     },
 
     {id: 'restaurant-2', 
     name:'Qin', 
-    completed: false, 
     category:[],
     },
     
     {id: 'restaurant-3', 
     name:'Pho', 
-    completed: false, 
     category:[],
     }
 ]
@@ -59,4 +59,4 @@ const Map={
   Italian: null,
 }
 
-ReactDOM.render(<App tasks={Data} groups={Categories} filterMap={Map}/>,document.getElementById('root'));
+ReactDOM.render(<App restaurantList={Data} groups={Categories} filterMap={Map}/>,document.getElementById('root'));

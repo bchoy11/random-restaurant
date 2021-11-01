@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
 import Categories from './Categories';
 
-export default function Option(props){
+export default function Restaurant(props){
 
   //variables
   const [isRenaming,setRename]=useState(false);
   const [viewCat,setView]=useState(false);
   const [newName, setName]=useState('');
 
-  const groupList=props.groups.map(group=>{
+  const categoryList=props.groups.map(group=>{
     const checkmark = props.marked.some(category=>category.id.includes(group.id)); //checks if task includes category in it's own category selection
     return <Categories 
       groupid={group.id}
       groupname={group.name}
       toggleChecked={props.toggleChecked}
-      taskname={props.name}
-      taskid={props.id}
+      category={props.name}
+      categoryid={props.id}
       checked={checkmark}
       key={group.id}
     />
@@ -41,7 +41,7 @@ export default function Option(props){
               <label className="todo-label" htmlFor={props.id}>
                 {props.name}'s categories:
               </label>
-              {groupList}
+              {categoryList}
             </div>
             <div className="btn-group">
            <button type="button" className="btn todo-cancel" onClick={()=>setView(false)}>
