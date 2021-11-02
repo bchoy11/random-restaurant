@@ -95,6 +95,8 @@ function App(props) {
     //updates restaurant with selected or removed categories
     function checkbox(categoryid, group, restaurantID){
       const addGroup={id: categoryid, name: group};
+      console.log(addGroup);
+      console.log(restaurantID);
       const categorize = restaurantList.map(currentRestaurant=>{
         if(restaurantID===currentRestaurant.id){
           let labeled=false;
@@ -114,6 +116,8 @@ function App(props) {
       });
       setRestaurants(categorize);
     }
+
+    console.log(restaurantList);
 
 //App format structure (format & building block component combination)
     
