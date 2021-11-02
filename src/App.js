@@ -11,7 +11,7 @@ function App(props) {
 //hooks
     const [restaurantList, setRestaurants]=useState(props.restaurantList); //sets the state of new state "restaurants" to props being passed into function from parent (Data from index.js)
     const [filter, setFilter]=useState('All'); //sets the current state of the filter based on selection
-    const [categories, setCat]=useState(props.groups); // sets state of food categories for filtering
+    const [categories, setCat]=useState(props.groups); // list of food categories objects for filtering
     const [filterMap]=useState(props.filterMap); //lists all the available filter options
     const [randomName,setRand]=useState('');
 
@@ -28,10 +28,10 @@ function App(props) {
         id={currentRestaurant.id} 
         name={currentRestaurant.name} 
         key={currentRestaurant.id}
-        marked={currentRestaurant.category}
+        restaurantCat={currentRestaurant.category} //categories within each restaurant
+        categories={categories} //category object
         deleteRestaurant={deleteRestaurant} 
         editTask={editRestaurant} 
-        groups={categories}
         toggleChecked={checkbox}
         curFilter={filter}
       />   
@@ -91,12 +91,11 @@ function App(props) {
       setRestaurants(editedRestaurant);
     }
 
-    //checks restaurant for selected category, if category exists in list then remove, if not then add into category list
+    //loops through list of restaurants and finds the one that has been checked (or unchecked)
+    //loops through restaurant category array looking for selected category, if category exists in list then remove, if not then add into category list
     //updates restaurant with selected or removed categories
-    function checkbox(categoryid, group, restaurantID){
-      const addGroup={id: categoryid, name: group};
-      console.log(addGroup);
-      console.log(restaurantID);
+    function checkbox(categoryid, categoryname, restaurantID){
+      const selectedCategory={id: categoryid, name: categoryname};
       const categorize = restaurantList.map(currentRestaurant=>{
         if(restaurantID===currentRestaurant.id){
           let labeled=false;
@@ -108,7 +107,7 @@ function App(props) {
             return labeled;
           });
           if(labeled===false){
-            currentRestaurant.category.push(addGroup);
+            currentRestaurant.category.push(selectedCategory);
             return {...currentRestaurant}
           }
         }  
@@ -116,8 +115,6 @@ function App(props) {
       });
       setRestaurants(categorize);
     }
-
-    console.log(restaurantList);
 
 //App format structure (format & building block component combination)
     

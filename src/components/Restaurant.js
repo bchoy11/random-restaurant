@@ -8,16 +8,16 @@ export default function Restaurant(props){
   const [viewCat,setView]=useState(false);
   const [newName, setName]=useState('');
 
-  const categoryList=props.groups.map(group=>{
-    const checkmark = props.marked.some(category=>category.id.includes(group.id)); //checks if task includes category in it's own category selection
+  const categoryList=props.categories.map(overallCat=>{
+    const checkmark = props.restaurantCat.some(rCat=>rCat.id.includes(overallCat.id)); //loops through each restaurant and checks if it has the current category in it's own category array
     return <Categories 
-      groupid={group.id}
-      groupname={group.name}
+      categoryid={overallCat.id}
+      categoryname={overallCat.name}
       toggleChecked={props.toggleChecked}
       category={props.name}
-      categoryid={props.id}
+      restaurantid={props.id}
       checked={checkmark}
-      key={group.id}
+      key={overallCat.id}
     />
   });
 
