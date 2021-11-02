@@ -21,11 +21,11 @@ export default function Restaurant(props){
     />
   });
 
-  //Todo item component functions
+  //Restaurant component functions
 
   function handleSubmit(e){
     e.preventDefault();
-    (newName!=='') && props.editTask(props.id,newName);
+    (newName!=='') && props.editRestaurant(props.id,newName);
     setName('');
     setRename(false);
   }
@@ -38,13 +38,13 @@ export default function Restaurant(props){
    const viewCategories=(
         <div className="stack-small">
             <div>
-              <label className="todo-label" htmlFor={props.id}>
+              <label className="restaurant-label" htmlFor={props.id}>
                 {props.name}'s categories:
               </label>
               {categoryList}
             </div>
             <div className="btn-group">
-           <button type="button" className="btn todo-cancel" onClick={()=>setView(false)}>
+           <button type="button" className="btn restaurant-cancel" onClick={()=>setView(false)}>
              Close
              <span className="visually-hidden">category change {props.name}</span>
            </button>
@@ -55,7 +55,7 @@ export default function Restaurant(props){
   const viewTemplate=(
         <div className="stack-small">
             <div>
-              <label className="todo-label" htmlFor={props.id}>
+              <label className="restaurant-label" htmlFor={props.id}>
                 {props.name}
               </label>
             </div>
@@ -66,7 +66,7 @@ export default function Restaurant(props){
               <button type="button" className="btn" onClick={()=>setView(true)}>
                 Categorize
               </button>
-              <button type="button" className="btn btn__danger" onClick={()=>props.deleteTask(props.id)}>
+              <button type="button" className="btn btn__danger" onClick={()=>props.deleteRestaurant(props.id)}>
                 Delete <span className="visually-hidden">{props.name}</span>
               </button>
             </div>
@@ -76,17 +76,17 @@ export default function Restaurant(props){
     const renameTemplate=(
       <form className="stack-small" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="todo-label" htmlFor={props.id}>
+          <label className="restaurant-label" htmlFor={props.id}>
             New name for {props.name}
           </label>
-          <input id={props.id} className="todo-text" type="text" onChange={handleChange}/>
+          <input id={props.id} className="restaurant-text" type="text" onChange={handleChange}/>
         </div>
         <div className="btn-group">
-          <button type="button" className="btn todo-cancel" onClick={()=>setRename(false)}>
+          <button type="button" className="btn restaurant-cancel" onClick={()=>setRename(false)}>
             Cancel
             <span className="visually-hidden">renaming {props.name}</span>
           </button>
-          <button type="submit" className="btn btn__primary todo-edit">
+          <button type="submit" className="btn btn__primary restaurant-edit">
             Save
             <span className="visually-hidden">new name for {props.name}</span>
           </button>

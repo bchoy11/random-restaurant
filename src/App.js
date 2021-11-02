@@ -31,18 +31,18 @@ function App(props) {
         restaurantCat={currentRestaurant.category} //categories within each restaurant
         categories={categories} //category object
         deleteRestaurant={deleteRestaurant} 
-        editTask={editRestaurant} 
+        editRestaurant={editRestaurant} 
         toggleChecked={checkbox}
         curFilter={filter}
       />   
     });
-      //variable taskList contains list of todos with set properties (id, name, completed, etc)
-      //created by filtering the copy of props from parent (tasks) for items with criteria matching selected filter button (using filter object)
+      //variable restaurantList contains list of restaurants with set properties (id, name, completed, etc)
+      //created by filtering the copy of props from parent (Restaurant) for items with criteria matching selected filter button (using filter object)
       //then mapping through the filtered list
 
     const plurality = filteredRestaurantList.length!==1?'restaurants':'restaurant';
     
-    const headingTask = filter!=='All'?`${filteredRestaurantList.length} ${filter} ${plurality}`:`${filteredRestaurantList.length} Total ${plurality}`;
+    const heading = filter!=='All'?`${filteredRestaurantList.length} ${filter} ${plurality}`:`${filteredRestaurantList.length} Total ${plurality}`;
 
     const Filter_Name=Object.keys(filterMap);
 
@@ -119,24 +119,24 @@ function App(props) {
 //App format structure (format & building block component combination)
     
     return (
-      <div className="todoapp stack-large">
+      <div className="restaurantapp stack-large">
         <h1>Generator</h1>
         <div>
           <button className="btn" onClick={generateRandom}>Random</button>
           <h2 className="label-wrapper label__lg">{randomName}</h2>
         </div>
-        <Form addTask={addRestaurant} addCategory={addCategory} />
+        <Form addRestaurant={addRestaurant} addCategory={addCategory} />
         <div className="filters btn-group stack-exception">
           {filterList}
         </div>
         <h2 id="list-heading">
-          {headingTask}
+          {heading}
         </h2>
         <ul
-          className="todo-list stack-large stack-exception"
+          className="restaurant-list stack-large stack-exception"
           aria-labelledby="list-heading"
         >
-          {filteredRestaurantList} {/*variable made up of Todo item components*/}
+          {filteredRestaurantList} {/*variable made up of restaurant components*/}
         </ul>
       </div>
     );

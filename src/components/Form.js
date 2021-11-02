@@ -16,7 +16,7 @@ function Form(props){
     
     function restaurantSubmit(e){
         e.preventDefault();
-        (namevar!=='') && props.addTask(namevar); //sends namevar through callback prop to parent (App)
+        (namevar!=='') && props.addRestaurant(namevar); //sends namevar through callback prop to parent (App)
         setName('');
     }
 
@@ -34,7 +34,7 @@ function Form(props){
         <form onSubmit={restaurantSubmit}>
           <input
             type="text"
-            id="new-todo-input"
+            id="new-restaurant-input"
             className="input input__lg"
             name="text"
             autoComplete="off"
@@ -48,7 +48,7 @@ function Form(props){
         <form onSubmit={categorySubmit}>
           <input
             type="text"
-            id="new-todo-input"
+            id="new-restaurant-input"
             className="input input__lg"
             name="text"
             autoComplete="off"

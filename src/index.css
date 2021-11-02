@@ -168,7 +168,7 @@ body {
   margin-top: 1.2rem;
 }
 /* END GLOBAL STYLES */
-.todoapp {
+.restaurantapp {
   background: #fff;
   margin: 2rem 0 4rem 0;
   padding: 1rem;
@@ -180,24 +180,24 @@ body {
   border-color: rgba(0,0,0,.5);
 }
 @media screen and (min-width: 550px) {
-  .todoapp {
+  .restaurantapp {
     padding: 4rem;
   }
 }
 @media screen and (max-width: 550px) {
-  .todoapp {
+  .restaurantapp {
     padding: 4rem;
   }
 }
-.todoapp > * {
+.restaurantapp > * {
   max-width: 50rem;
   margin-left: auto;
   margin-right: auto;
 }
-.todoapp > form {
+.restaurantapp > form {
   max-width: 100%;
 }
-.todoapp > h1 {
+.restaurantapp > h1 {
   display: block;
   max-width: 100%;
   text-align: center;
@@ -243,22 +243,22 @@ body {
   flex-basis:auto;
 }
 
-/* Todo item styles */
-.todo {
+/* restaurant item styles */
+.restaurant {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.todo > * {
+.restaurant > * {
   flex: 0 0 100%;
 }
-.todo-text {
+.restaurant-text {
   width: 100%;
   min-height: 4.4rem;
   padding: 0.4rem 0.8rem;
   border: 2px solid #565656;
 }
-.todo-text:focus {
+.restaurant-text:focus {
   box-shadow: inset 0 0 0 2px;
 }
 /* CHECKBOX STYLES */
