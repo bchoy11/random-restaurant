@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import Categories from './Categories';
+import { Modal, ModalBody } from 'react-bootstrap';
+
 
 export default function Restaurant(props){
 
@@ -35,21 +37,22 @@ export default function Restaurant(props){
   }
 
   //format of different views depending on edit mode
-   const viewCategories=(
+   
+      const viewCategories=( 
         <div className="stack-small">
-            <div>
-              <label className="restaurant-label" htmlFor={props.id}>
-                {props.name}'s categories:
-              </label>
-              {categoryList}
-            </div>
-            <div className="btn-group">
-           <button type="button" className="btn restaurant-cancel" onClick={()=>setView(false)}>
-             Close
-             <span className="visually-hidden">category change {props.name}</span>
-           </button>
-            </div>
+          <div>
+            <label className="restaurant-label" htmlFor={props.id}>
+              {props.name}'s categories:
+            </label>
+            {categoryList}
           </div>
+          <div className="btn-group">
+          <button type="button" className="btn restaurant-cancel" onClick={()=>setView(false)}>
+            Close
+            <span className="visually-hidden">category change {props.name}</span>
+          </button>
+          </div>
+        </div>
     );
 
   const viewTemplate=(
