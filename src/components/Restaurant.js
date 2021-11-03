@@ -1,27 +1,12 @@
 import React, {useState} from 'react';
-import Categories from './Categories';
-import { Modal, ModalBody } from 'react-bootstrap';
+import CategorizeButton from './Modal';
 
 
 export default function Restaurant(props){
 
   //variables
   const [isRenaming,setRename]=useState(false);
-  const [viewCat,setView]=useState(false);
   const [newName, setName]=useState('');
-
-  const categoryList=props.categories.map(overallCat=>{
-    const checkmark = props.restaurantCat.some(rCat=>rCat.id.includes(overallCat.id)); //loops through each restaurant and checks if it has the current category in it's own category array
-    return <Categories 
-      categoryid={overallCat.id}
-      categoryname={overallCat.name}
-      toggleChecked={props.toggleChecked}
-      category={props.name}
-      restaurantid={props.id}
-      checked={checkmark}
-      key={overallCat.id}
-    />
-  });
 
   //Restaurant component functions
 
@@ -37,23 +22,6 @@ export default function Restaurant(props){
   }
 
   //format of different views depending on edit mode
-   
-      const viewCategories=( 
-        <div className="stack-small">
-          <div>
-            <label className="restaurant-label" htmlFor={props.id}>
-              {props.name}'s categories:
-            </label>
-            {categoryList}
-          </div>
-          <div className="btn-group">
-          <button type="button" className="btn restaurant-cancel" onClick={()=>setView(false)}>
-            Close
-            <span className="visually-hidden">category change {props.name}</span>
-          </button>
-          </div>
-        </div>
-    );
 
   const viewTemplate=(
         <div className="stack-small">
@@ -66,9 +34,13 @@ export default function Restaurant(props){
               <button type="button" className="btn" onClick={()=>setRename(true)}>
                 Rename <span className="visually-hidden">{props.name}</span>
               </button>
-              <button type="button" className="btn" onClick={()=>setView(true)}>
-                Categorize
-              </button>
+              <CategorizeButton
+              id={props.id} 
+              restaurantname={props.name}
+              restaurantCat={props.restaurantCat}
+              categories={props.categories} 
+              toggleChecked={props.toggleChecked}
+              />
               <button type="button" className="btn btn__danger" onClick={()=>props.deleteRestaurant(props.id)}>
                 Delete <span className="visually-hidden">{props.name}</span>
               </button>
@@ -97,5 +69,5 @@ export default function Restaurant(props){
       </form>
   );
 
-  return(isRenaming?renameTemplate:viewCat?viewCategories:viewTemplate);
+  return(isRenaming?renameTemplate:viewTemplate);
 }

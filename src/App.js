@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
-import './index.css';
 import Restaurant from './components/Restaurant';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
 import {nanoid} from 'nanoid';
-import Example from './components/Modal';
-
+import './index.css';
 
 
 function App(props) {
@@ -140,7 +138,6 @@ function App(props) {
         >
           {filteredRestaurantList} {/*variable made up of restaurant components*/}
         </ul>
-        <Example />
       </div>
       
     );

@@ -1,28 +1,38 @@
 import React, {useState} from 'react';
+import Categories from './Categories';
 import { Modal, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Example() {
+export default function CategorizeButton(props) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
+
+    const categoryList=props.categories.map(overallCat=>{
+        const checkmark = props.restaurantCat.some(rCat=>rCat.id.includes(overallCat.id)); //loops through each restaurant and checks if it has the current category in it's own category array
+        return <Categories 
+          categoryid={overallCat.id}
+          categoryname={overallCat.name}
+          toggleChecked={props.toggleChecked}
+          restaurantid={props.id}
+          checked={checkmark}
+          key={overallCat.id}
+        />
+      });
+
     return (
       <>
         <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
+          categorize
         </Button>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{props.restaurantname}'s Categories</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>{categoryList}</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
             <Button variant="primary" onClick={handleClose}>
               Save Changes
             </Button>
